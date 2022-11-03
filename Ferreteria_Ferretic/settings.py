@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^ms&xd-&o=x@1$@rnl%o68ndc$=$%31+$*$=dq&x1kcr!y&*7t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#AUTH_USER_MODEL = "ferretic.Usuario"
+AUTH_USER_MODEL = "ferretic.Usuario"
 
 ALLOWED_HOSTS = []
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ferretic.apps.FerreticConfig',
     'rest_framework',
-    #"rest_framework.authtoken"
+    "rest_framework.authtoken"
 ]
 
 MIDDLEWARE = [
@@ -116,10 +116,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-#REST_FRAMEWORK = {
-        #'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
-     #   'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
- #   }
+REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticated'],
+       'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
+   }
 
 
 # Static files (CSS, JavaScript, Images)

@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from ferretic.serializer import *
+from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 
 
-"""class TokenProvider(ObtainAuthToken):
+class TokenProvider(ObtainAuthToken):
   def post(self,request,*args,**kwargs):
      serializer = self.serializer_class(data=request.data,context={"request":request})
      serializer.is_valid(raise_exception=True)
@@ -18,7 +19,7 @@ from rest_framework.response import Response
 
 class Usuario_view(viewsets.ModelViewSet):
   queryset = Usuario.objects.all()
-  serializer_class = Usuario_serializer"""
+  serializer_class = Usuario_serializer
 
 
 

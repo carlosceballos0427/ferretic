@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from ferretic.models import *
 
-"""class Usuario_serializer(serializers.ModelSerializer):
+class Usuario_serializer(serializers.ModelSerializer):
    class Meta:
        model = Usuario
        fields = "__all__"
@@ -14,7 +14,7 @@ from ferretic.models import *
        )
        user.set_password(validated_data["password"])
        user.save()
-       return user"""
+       return user
 
 
 class Producto_serializer(serializers.ModelSerializer):

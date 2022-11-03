@@ -1,13 +1,16 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 # Create your models here.
 class Producto(models.Model):
     producto = models.CharField(max_length=200)
     valor = models.IntegerField()
     marca = models.CharField(max_length=100)
+
     def __str__(self):
         return self.producto
+
 
 class Proveedor(models.Model):
     proveedor = models.CharField(max_length=200)
@@ -17,6 +20,7 @@ class Proveedor(models.Model):
 
     def __str__(self):
         return self.proveedor
+
 
 class Cliente(models.Model):
     cliente = models.CharField(max_length=200)
@@ -28,11 +32,11 @@ class Cliente(models.Model):
         return self.cliente
 
 
-"""class Usuario(AbstractUser):
+class Usuario(AbstractUser):
   nombres_apellidos = models.CharField(max_length=50)
   telefono = models.CharField(max_length=10)
   correo = models.CharField(max_length=50)
-  token = models.CharField(max_length=100)"""
+  token = models.CharField(max_length=100,default='',null=True, blank=True)
 
 
 class Empleado(models.Model):
@@ -55,7 +59,6 @@ class Venta(models.Model):
     valor_venta = models.IntegerField()
 
 
-
 class Compras(models.Model):
     fecha_compra = models.DateTimeField(auto_now=False)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.PROTECT)
@@ -65,29 +68,6 @@ class Compras(models.Model):
     valor_compra = models.IntegerField()
 
 
-
 class Almacen(models.Model):
     cantidad_compra = models.ForeignKey(Compras, on_delete=models.PROTECT)
     cantidad_venta = models.ForeignKey(Venta, on_delete=models.PROTECT)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
