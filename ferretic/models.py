@@ -33,10 +33,10 @@ class Cliente(models.Model):
 
 
 class Usuario(AbstractUser):
-  nombres_apellidos = models.CharField(max_length=50)
-  telefono = models.CharField(max_length=10)
-  correo = models.CharField(max_length=50)
-  token = models.CharField(max_length=100,default='',null=True, blank=True)
+    nombres_apellidos = models.CharField(max_length=50)
+    telefono = models.CharField(max_length=10)
+    correo = models.CharField(max_length=50)
+    token = models.CharField(max_length=100,default='',null=True, blank=True)
 
 
 class Empleado(models.Model):

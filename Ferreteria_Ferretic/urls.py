@@ -15,8 +15,7 @@ router.register("usuario", Usuario_view, basename="usuario")
 
 
 urlpatterns = [
-  path('', include(router.urls)),
-  path("token", TokenProvider.as_view(),name = "token")
-
+    path('', include(router.urls)),
+    path("token", TokenProvider.as_view(),name = "token")
 ]
 

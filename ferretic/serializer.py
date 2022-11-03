@@ -2,19 +2,19 @@ from rest_framework import serializers
 from ferretic.models import *
 
 class Usuario_serializer(serializers.ModelSerializer):
-   class Meta:
-       model = Usuario
-       fields = "__all__"
-   def create(self,validated_data):
-       user = Usuario(
-           username=validated_data["username"],
-           nombres_apellidos=validated_data["nombres_apellidos"],
-           correo=validated_data["correo"],
-           telefono=validated_data["telefono"],
-       )
-       user.set_password(validated_data["password"])
-       user.save()
-       return user
+    class Meta:
+        model = Usuario
+        fields = "__all__"
+def create(self,validated_data):
+    user = Usuario(
+        username=validated_data["username"],
+        nombres_apellidos=validated_data["nombres_apellidos"],
+        correo=validated_data["correo"],
+        telefono=validated_data["telefono"],
+    )
+    user.set_password(validated_data["password"])
+    user.save()
+    return user
 
 
 class Producto_serializer(serializers.ModelSerializer):
