@@ -1,0 +1,42 @@
+<div style="padding:30px">
+  <p-table [value]="productos" selectionMode="single" [(selection)]="producto_seleccionado" (onRowSelect)="llenar_formulario_producto()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="ver_form_producto=true; form_producto.reset()"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Valor</th>
+        <th>Marca</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-producto>
+      <tr [pSelectableRow]="producto">
+        <td>{{producto.id}}</td>
+        <td>{{producto.nombre}}</td>
+        <td>${{producto.valor|number}}</td>
+        <td>{{producto.marca}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Producto" [(visible)]="ver_form_producto" [position]="'top'" [modal]="true">
+  <form [formGroup]="form_producto">
+    <div class="login-page">
+      <div class="form">
+        <input pInputText formControlName="nombre" type="text" placeholder="Nombre"/>
+        <br>
+        <input pInputText formControlName="valor" type="text" placeholder="Valor"/>
+        <br>
+        <input pInputText formControlName="marca" type="text" placeholder="Marca"/>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+

@@ -1,0 +1,45 @@
+<div style="padding:30px">
+  <p-table [value]="empleados" selectionMode="single" [(selection)]="empleado_seleccionado" (onRowSelect)="llenar_formulario_empleado()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="ver_form_empleado=true; form_empleado.reset()"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Telefono</th>
+        <th>Correo</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-empleado>
+      <tr [pSelectableRow]="empleado">
+        <td>{{empleado.id}}</td>
+        <td>{{empleado.nombre}}</td>
+        <td>{{empleado.direccion}}</td>
+        <td>{{empleado.telefono}}</td>
+        <td>{{empleado.correo}}</td>
+
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Empleado" [(visible)]="ver_form_empleado" [position]="'top'" [modal]="true">
+  <form [formGroup]="form_empleado">
+    <div class="login-page">
+      <div class="form">
+        <input pInputText formControlName="nombre" type="text" placeholder="Nombre"/>
+        <br>
+        <input pInputText formControlName="direccion" type="text" placeholder="Direccion"/>
+        <br>
+        <input pInputText formControlName="telefono" type="text" placeholder="Telefono"/>
+        <br>
+        <input pInputText formControlName="correo" type="text" placeholder="Correo"/>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

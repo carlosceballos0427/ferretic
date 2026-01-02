@@ -1,0 +1,51 @@
+<div style="padding:30px">
+  <p-table [value]="compras" selectionMode="single" [(selection)]="compra_seleccionado" (onRowSelect)="llenar_formulario_compra()">
+    <ng-template pTemplate="caption">
+      <p-button icon="pi pi-plus" (click)="ver_form_compra = true;form_compra.reset()"></p-button>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Id</th>
+        <th>Producto</th>
+        <th>Proveedor</th>
+        <th>Empleado</th>
+        <th>Cantidad Compra</th>
+        <th>Valor Compra</th>
+        <th>Fecha Compra</th>
+
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-compra>
+      <tr [pSelectableRow]="compra">
+        <td >{{compra.id}}</td>
+        <td >{{compra.producto.nombre}}</td>
+        <td >{{compra.proveedor.nombre}}</td>
+        <td >{{compra.empleado.nombre}}</td>
+        <td>{{compra.cantidad_compra}}</td>
+        <td>${{compra.valor_compra | number}}</td>
+        <td>{{compra.fecha_compra | date}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<p-dialog header="Compra" [(visible)]="ver_form_compra" [position]="'top'" [modal]="true">
+  <form [formGroup]="form_compra">
+    <div class="login-page">
+      <div class="form">
+        <input pInputText formControlName="cantidad_compra" type="text" placeholder="Cantidad compra"/>
+        <br>
+        <input pInputText formControlName="valor_compra" type="text" placeholder="Valor compra"/>
+        <br>
+        <p-dropdown appendTo="body" [options]="productos" formControlName="producto_id" optionLabel="nombre" optionValue="id"></p-dropdown>
+        <br>
+        <p-dropdown appendTo="body" [options]="proveedor" formControlName="proveedor_id" optionLabel="nombre" optionValue="id"></p-dropdown>
+        <br>
+        <p-dropdown appendTo="body" [options]="empleados" formControlName="empleado_id" optionLabel="nombre" optionValue="id"></p-dropdown>
+        <br>
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>

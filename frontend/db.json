@@ -1,0 +1,77 @@
+{
+    "producto": [
+        {
+            "id": 1,
+            "nombre": "Laptop Gamer",
+            "precio": 1500,
+            "stock": 10,
+            "descripcion": "Alta gama"
+        },
+        {
+            "id": 2,
+            "nombre": "Mouse Inalámbrico",
+            "precio": 25,
+            "stock": 50,
+            "descripcion": "Ergonómico"
+        },
+        {
+            "id": 3,
+            "nombre": "Teclado Mecánico",
+            "precio": 80,
+            "stock": 20,
+            "descripcion": "RGB"
+        }
+    ],
+    "proveedor": [
+        {
+            "id": 1,
+            "nombre": "TecnoGlobal S.A.",
+            "direccion": "Calle 123",
+            "telefono": "555-0101"
+        },
+        {
+            "id": 2,
+            "nombre": "Importaciones Perez",
+            "direccion": "Av. Siempre Viva",
+            "telefono": "555-0102"
+        }
+    ],
+    "cliente": [
+        {
+            "id": 1,
+            "nombre": "Juan Perez",
+            "email": "juan@example.com",
+            "telefono": "555-9999"
+        },
+        {
+            "id": 2,
+            "nombre": "Maria Gomez",
+            "email": "maria@example.com",
+            "telefono": "555-8888"
+        }
+    ],
+    "empleado": [
+        {
+            "id": 1,
+            "nombre": "Admin",
+            "cargo": "Gerente",
+            "salario": 5000
+        },
+        {
+            "id": 2,
+            "nombre": "Vendedor 1",
+            "cargo": "Ventas",
+            "salario": 1500
+        }
+    ],
+    "venta": [
+        {
+            "id": 1,
+            "fecha": "2023-01-01",
+            "total": 1500,
+            "clienteId": 1
+        }
+    ],
+    "compra": [],
+    "almacen": []
+}
