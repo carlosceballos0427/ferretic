@@ -1,9 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
-@import "primeng/resources/themes/lara-light-blue/theme.css";
+/* Global Design System */
+@import "primeng/resources/themes/lara-dark-indigo/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #6366f1;
+    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --surface-ground: #0f172a;
+    --surface-card: #1e293b;
+    --text-color: #f8fafc;
+    --text-secondary: #94a3b8;
+    --font-family: 'Inter', sans-serif;
+    --heading-font: 'Outfit', sans-serif;
+}
 
 body {
     margin: 0;
     font-family: var(--font-family);
+    background-color: var(--surface-ground);
+    color: var(--text-color);
+    -webkit-font-smoothing: antialiased;
+    height: 100vh;
+    overflow-x: hidden;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font);
+    font-weight: 600;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-ground);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+/* PrimeNG Overrides for Premium Look */
+.p-menubar {
+    background: var(--surface-card) !important;
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 0.75rem 2rem !important;
+}
+
+.p-datatable .p-datatable-header {
+    background: transparent !important;
+    border: none !important;
+}
+
+.p-dialog .p-dialog-header {
+    background: var(--surface-card) !important;
+}
+
+.p-dialog .p-dialog-content {
+    background: var(--surface-card) !important;
+}
+
+.p-button {
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.p-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+.border-left-3 { border-left-width: 3px !important; border-left-style: solid !important; }
+.border-primary { border-color: var(--primary-color) !important; }
+.border-success { border-color: #22c55e !important; }
+.border-orange { border-color: #f59e0b !important; }
+.border-purple { border-color: #a855f7 !important; }
+
+.text-success { color: #22c55e !important; }
+.p-button-success { background: #22c55e !important; border-color: #22c55e !important; }
+.p-button-info { background: #3b82f6 !important; border-color: #3b82f6 !important; }
+.p-button-warning { background: #f59e0b !important; border-color: #f59e0b !important; }
+.p-button-help { background: #a855f7 !important; border-color: #a855f7 !important; }
+.p-button-danger { background: #ef4444 !important; border-color: #ef4444 !important; }
+@import "primeflex/primeflex.css";

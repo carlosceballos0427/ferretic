@@ -1,42 +1,77 @@
-<div style="padding:30px">
-  <p-table [value]="productos" selectionMode="single" [(selection)]="producto_seleccionado" (onRowSelect)="llenar_formulario_producto()">
-    <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="ver_form_producto=true; form_producto.reset()"></p-button>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Valor</th>
-        <th>Marca</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-producto>
-      <tr [pSelectableRow]="producto">
-        <td>{{producto.id}}</td>
-        <td>{{producto.nombre}}</td>
-        <td>${{producto.valor|number}}</td>
-        <td>{{producto.marca}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+<div class="p-4">
+  <div class="glass-panel p-4 mb-4 flex justify-content-between align-items-center">
+    <div>
+      <h2 class="m-0">Gestión de Productos</h2>
+      <p class="text-secondary m-0">Control de inventario y precios</p>
+    </div>
+    <button pButton pRipple label="Nuevo Producto" icon="pi pi-plus" class="p-button-success"
+      (click)="ver_form_producto=true; form_producto.reset()"></button>
+  </div>
+
+  <div class="card glass-panel overflow-hidden">
+    <p-table [value]="productos" selectionMode="single" [(selection)]="producto_seleccionado"
+      (onRowSelect)="llenar_formulario_producto()" responsiveLayout="stack" breakpoint="960px">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+          <th pSortableColumn="producto">Nombre <p-sortIcon field="producto"></p-sortIcon></th>
+          <th pSortableColumn="valor">Valor <p-sortIcon field="valor"></p-sortIcon></th>
+          <th pSortableColumn="marca">Marca <p-sortIcon field="marca"></p-sortIcon></th>
+          <th>Acciones</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-producto>
+        <tr [pSelectableRow]="producto">
+          <td><span class="p-column-title">ID</span>{{producto.id}}</td>
+          <td><span class="p-column-title">Nombre</span>{{producto.producto}}</td>
+          <td><span class="p-column-title">Valor</span><span
+              class="font-bold text-primary">${{producto.valor|number}}</span></td>
+          <td><span class="p-column-title">Marca</span><span class="p-badge p-badge-info">{{producto.marca}}</span></td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-text"
+              (click)="producto_seleccionado=producto; llenar_formulario_producto()"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5" class="text-center p-4">No se encontraron productos.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
-<p-dialog header="Producto" [(visible)]="ver_form_producto" [position]="'top'" [modal]="true">
-  <form [formGroup]="form_producto">
-    <div class="login-page">
-      <div class="form">
-        <input pInputText formControlName="nombre" type="text" placeholder="Nombre"/>
-        <br>
-        <input pInputText formControlName="valor" type="text" placeholder="Valor"/>
-        <br>
-        <input pInputText formControlName="marca" type="text" placeholder="Marca"/>
+
+<p-dialog header="Detalles del Producto" [(visible)]="ver_form_producto" [style]="{width: '450px'}" [modal]="true"
+  class="p-fluid">
+  <form [formGroup]="form_producto" class="mt-4">
+    <div class="field mb-4">
+      <label for="producto" class="block mb-2">Nombre del Producto</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-tag"></i>
+        <input id="producto" pInputText formControlName="producto" placeholder="Ej: Taladro Percutor" />
+      </span>
+    </div>
+
+    <div class="field mb-4">
+      <label for="valor" class="block mb-2">Precio de Venta</label>
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">$</span>
+        <input id="valor" pInputText formControlName="valor" type="number" placeholder="0.00" />
       </div>
+    </div>
+
+    <div class="field mb-4">
+      <label for="marca" class="block mb-2">Marca</label>
+      <span class="p-input-icon-left">
+        <i class="pi pi-briefcase"></i>
+        <input id="marca" pInputText formControlName="marca" placeholder="Ej: Dewalt" />
+      </span>
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+      (click)="ver_form_producto=false"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-primary" (click)="guardar()"></button>
   </ng-template>
 </p-dialog>
-
-
-

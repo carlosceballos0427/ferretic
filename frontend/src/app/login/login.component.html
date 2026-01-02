@@ -1,10 +1,32 @@
-<form [formGroup]="form_login">
-  <div class="login-page">
-    <div class="form">
-      <input formControlName="username" type="text" placeholder="username"/>
-      <input formControlName="password" type="password" placeholder="password"/>
-      <button (click)="get_token()">login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
+<div class="login-container">
+    <div class="login-card glass-panel">
+        <div class="logo-section">
+            <h1>FERRETIC</h1>
+            <p>Sistema de Gestión de Inventarios</p>
+        </div>
+
+        <form [formGroup]="form_login">
+            <div class="form-group">
+                <label>Usuario</label>
+                <div class="input-wrapper">
+                    <i class="pi pi-user"></i>
+                    <input class="custom-input" formControlName="username" type="text" placeholder="Ingrese su usuario"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <div class="input-wrapper">
+                    <i class="pi pi-lock"></i>
+                    <input class="custom-input" formControlName="password" type="password" placeholder="Ingrese su contraseña"/>
+                </div>
+            </div>
+
+            <button pButton pRipple type="submit" label="Iniciar Sesión" class="login-btn" (click)="get_token()"></button>
+            
+            <p class="footer-text">
+                ¿Olvidó su contraseña? <a href="#">Contactar Soporte</a>
+            </p>
+        </form>
     </div>
-  </div>
-</form>
+</div>

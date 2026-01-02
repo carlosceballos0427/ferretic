@@ -7,6 +7,7 @@ class Producto(models.Model):
     producto = models.CharField(max_length=200)
     valor = models.IntegerField()
     marca = models.CharField(max_length=100)
+    stock = models.IntegerField(default=0)
 
     def __str__(self):
         return self.producto

@@ -1,0 +1,13 @@
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.content-container {
+    padding-top: 2rem;
+    min-height: calc(100vh - 70px);
+}
+
+.content-container.no-nav {
+    padding-top: 0;
+    min-height: 100vh;
+}

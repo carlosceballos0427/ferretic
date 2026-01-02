@@ -1,3 +1,110 @@
+<div class="p-4">
+    <div class="glass-panel p-5 mb-5">
+        <h1 class="m-0 text-4xl mb-2">Bienvenido a Ferretic</h1>
+        <p class="text-secondary text-lg">Panel de control administrativo e indicadores de rendimiento</p>
+    </div>
 
+    <div class="grid">
+        <!-- Stats Cards -->
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card glass-panel p-4 border-left-3 border-primary">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-secondary font-medium mb-3">Productos</span>
+                        <div class="text-3xl font-bold">{{stats.productos}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-blue-100 border-circle"
+                        style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-tag text-blue-500 text-xl"></i>
+                    </div>
+                </div>
+                <span class="text-green-500 font-medium">+2 </span>
+                <span class="text-secondary text-sm">esta semana</span>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card glass-panel p-4 border-left-3 border-success">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-secondary font-medium mb-3">Ventas Totales</span>
+                        <div class="text-3xl font-bold">${{stats.ventas_valor | number}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-green-100 border-circle"
+                        style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-shopping-cart text-green-500 text-xl"></i>
+                    </div>
+                </div>
+                <span class="text-green-500 font-medium">{{stats.ventas_count}} </span>
+                <span class="text-secondary text-sm">operaciones realizadas</span>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card glass-panel p-4 border-left-3 border-orange">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-secondary font-medium mb-3">Clientes</span>
+                        <div class="text-3xl font-bold">{{stats.clientes}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-orange-100 border-circle"
+                        style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-users text-orange-500 text-xl"></i>
+                    </div>
+                </div>
+                <span class="text-secondary text-sm">Clientes registrados</span>
+            </div>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card glass-panel p-4 border-left-3 border-purple">
+                <div class="flex justify-content-between mb-3">
+                    <div>
+                        <span class="block text-secondary font-medium mb-3">Empleados</span>
+                        <div class="text-3xl font-bold">{{stats.empleados}}</div>
+                    </div>
+                    <div class="flex align-items-center justify-content-center bg-purple-100 border-circle"
+                        style="width:2.5rem;height:2.5rem">
+                        <i class="pi pi-id-card text-purple-500 text-xl"></i>
+                    </div>
+                </div>
+                <span class="text-secondary text-sm">Personal activo</span>
+            </div>
+        </div>
 
+        <div class="col-12 lg:col-8">
+            <div class="card glass-panel p-4">
+                <h3 class="mt-0 mb-4">Acciones Rápidas</h3>
+                <div class="grid">
+                    <div class="col-12 md:col-4">
+                        <button pButton pRipple label="Nueva Venta" icon="pi pi-cart-plus"
+                            class="p-button-success w-full p-4" (click)="irA('/venta')"></button>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <button pButton pRipple label="Añadir Producto" icon="pi pi-plus"
+                            class="p-button-primary w-full p-4" (click)="irA('/producto')"></button>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <button pButton pRipple label="Ver Inventario" icon="pi pi-box" class="p-button-info w-full p-4"
+                            (click)="irA('/almacen')"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-12 lg:col-4">
+            <div class="card glass-panel p-4 h-full">
+                <h3 class="mt-0 mb-4">Estado del Sistema</h3>
+                <div class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Servidor Backend Conectado</span>
+                </div>
+                <div class="flex align-items-center mb-3">
+                    <i class="pi pi-check-circle text-green-500 mr-2"></i>
+                    <span>Base de Datos Sincronizada</span>
+                </div>
+                <div class="flex align-items-center">
+                    <i class="pi pi-info-circle text-blue-500 mr-2"></i>
+                    <span>Sincronización en tiempo real activa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

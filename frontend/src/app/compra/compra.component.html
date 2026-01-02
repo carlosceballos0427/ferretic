@@ -1,51 +1,83 @@
-<div style="padding:30px">
-  <p-table [value]="compras" selectionMode="single" [(selection)]="compra_seleccionado" (onRowSelect)="llenar_formulario_compra()">
-    <ng-template pTemplate="caption">
-      <p-button icon="pi pi-plus" (click)="ver_form_compra = true;form_compra.reset()"></p-button>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Id</th>
-        <th>Producto</th>
-        <th>Proveedor</th>
-        <th>Empleado</th>
-        <th>Cantidad Compra</th>
-        <th>Valor Compra</th>
-        <th>Fecha Compra</th>
+<div class="p-4">
+  <div class="glass-panel p-4 mb-4 flex justify-content-between align-items-center">
+    <div>
+      <h2 class="m-0">Registro de Compras</h2>
+      <p class="text-secondary m-0">Abastecimiento y entrada de mercancía</p>
+    </div>
+    <button pButton pRipple label="Nueva Compra" icon="pi pi-plus" class="p-button-warning"
+      (click)="ver_form_compra = true;form_compra.reset()"></button>
+  </div>
 
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-compra>
-      <tr [pSelectableRow]="compra">
-        <td >{{compra.id}}</td>
-        <td >{{compra.producto.nombre}}</td>
-        <td >{{compra.proveedor.nombre}}</td>
-        <td >{{compra.empleado.nombre}}</td>
-        <td>{{compra.cantidad_compra}}</td>
-        <td>${{compra.valor_compra | number}}</td>
-        <td>{{compra.fecha_compra | date}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div class="card glass-panel overflow-hidden">
+    <p-table [value]="compras" selectionMode="single" [(selection)]="compra_seleccionado"
+      (onRowSelect)="llenar_formulario_compra()" responsiveLayout="stack">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">ID <p-sortIcon field="id"></p-sortIcon></th>
+          <th>Producto</th>
+          <th>Proveedor</th>
+          <th>Comprador</th>
+          <th pSortableColumn="cantidad_compra">Cant. <p-sortIcon field="cantidad_compra"></p-sortIcon></th>
+          <th pSortableColumn="valor_compra">Total <p-sortIcon field="valor_compra"></p-sortIcon></th>
+          <th pSortableColumn="fecha_compra">Fecha <p-sortIcon field="fecha_compra"></p-sortIcon></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-compra>
+        <tr [pSelectableRow]="compra">
+          <td><span class="p-column-title">ID</span>{{compra.id}}</td>
+          <td><span class="p-column-title">Producto</span>{{compra.producto.producto}}</td>
+          <td><span class="p-column-title">Proveedor</span>{{compra.proveedor.proveedor}}</td>
+          <td><span class="p-column-title">Empleado</span>{{compra.empleado.empleado}}</td>
+          <td><span class="p-column-title">Cant.</span>{{compra.cantidad_compra}}</td>
+          <td><span class="p-column-title">Total</span><span class="text-warning font-bold">${{compra.valor_compra |
+              number}}</span></td>
+          <td><span class="p-column-title">Fecha</span>{{compra.fecha_compra | date:'dd/MM/yyyy'}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
-<p-dialog header="Compra" [(visible)]="ver_form_compra" [position]="'top'" [modal]="true">
-  <form [formGroup]="form_compra">
-    <div class="login-page">
-      <div class="form">
-        <input pInputText formControlName="cantidad_compra" type="text" placeholder="Cantidad compra"/>
-        <br>
-        <input pInputText formControlName="valor_compra" type="text" placeholder="Valor compra"/>
-        <br>
-        <p-dropdown appendTo="body" [options]="productos" formControlName="producto_id" optionLabel="nombre" optionValue="id"></p-dropdown>
-        <br>
-        <p-dropdown appendTo="body" [options]="proveedor" formControlName="proveedor_id" optionLabel="nombre" optionValue="id"></p-dropdown>
-        <br>
-        <p-dropdown appendTo="body" [options]="empleados" formControlName="empleado_id" optionLabel="nombre" optionValue="id"></p-dropdown>
-        <br>
+
+<p-dialog header="Registrar Entrada de Mercancía" [(visible)]="ver_form_compra" [style]="{width: '500px'}"
+  [modal]="true" class="p-fluid">
+  <form [formGroup]="form_compra" class="mt-4">
+    <div class="field mb-3">
+      <label class="block mb-2">Producto</label>
+      <p-dropdown [options]="productos" formControlName="producto_id" optionLabel="producto" optionValue="id"
+        [filter]="true"></p-dropdown>
+    </div>
+    <div class="field mb-3">
+      <label class="block mb-2">Proveedor</label>
+      <p-dropdown [options]="proveedor" formControlName="proveedor_id" optionLabel="proveedor" optionValue="id"
+        [filter]="true"></p-dropdown>
+    </div>
+    <div class="field mb-3">
+      <label class="block mb-2">Empleado Responsable</label>
+      <p-dropdown [options]="empleados" formControlName="empleado_id" optionLabel="empleado"
+        optionValue="id"></p-dropdown>
+    </div>
+    <div class="grid">
+      <div class="col-6 field mb-3">
+        <label class="block mb-2">Cantidad</label>
+        <input pInputText formControlName="cantidad_compra" type="number" />
       </div>
+      <div class="col-6 field mb-3">
+        <label class="block mb-2">Costo Total</label>
+        <div class="p-inputgroup">
+          <span class="p-inputgroup-addon">$</span>
+          <input pInputText formControlName="valor_compra" type="number" />
+        </div>
+      </div>
+    </div>
+    <div class="field mb-3">
+      <label class="block mb-2">Fecha de Compra</label>
+      <input pInputText formControlName="fecha_compra" type="datetime-local" />
     </div>
   </form>
   <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+      (click)="ver_form_compra=false"></button>
+    <button pButton pRipple label="Registrar Compra" icon="pi pi-check" class="p-button-warning"
+      (click)="guardar()"></button>
   </ng-template>
 </p-dialog>

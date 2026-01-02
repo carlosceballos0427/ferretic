@@ -1,5 +1,27 @@
-<p-menubar *ngIf="api.usuario" [model]="items"></p-menubar>
-<router-outlet></router-outlet>
+<p-toast></p-toast>
+<div class="main-layout" *ngIf="api.usuario">
+    <p-menubar [model]="items">
+        <ng-template pTemplate="start">
+            <div class="flex align-items-center mr-4 cursor-pointer" routerLink="/home">
+                <span class="text-2xl font-bold font-heading bg-primary-gradient text-transparent bg-clip-text mr-2">
+                    <i class="pi pi-bolt mr-2" style="font-size: 1.5rem; color: var(--primary-color)"></i>
+                    FERRETIC
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="end">
+            <div class="flex align-items-center">
+                <p-avatar icon="pi pi-user" styleClass="mr-2" shape="circle"
+                    backgroundColor="var(--primary-color)"></p-avatar>
+                <div class="hidden md:block">
+                    <span class="font-bold block line-height-1">Admin</span>
+                    <span class="text-xs text-secondary">Administrador</span>
+                </div>
+            </div>
+        </ng-template>
+    </p-menubar>
+</div>
 
-
-
+<div class="content-container" [class.no-nav]="!api.usuario">
+    <router-outlet></router-outlet>
+</div>

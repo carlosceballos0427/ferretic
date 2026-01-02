@@ -46,10 +46,22 @@ class Venta_view(viewsets.ModelViewSet):
     queryset = Venta.objects.all()
     serializer_class = Venta_serializer
 
+    def perform_create(self, serializer):
+        venta = serializer.save()
+        producto = venta.producto
+        producto.stock -= venta.cantidad_venta
+        producto.save()
+
 
 class Compras_view(viewsets.ModelViewSet):
     queryset = Compras.objects.all()
     serializer_class = Compras_serializer
+
+    def perform_create(self, serializer):
+        compra = serializer.save()
+        producto = compra.producto
+        producto.stock += compra.cantidad_compra
+        producto.save()
 
 
 class Almacen_view(viewsets.ModelViewSet):

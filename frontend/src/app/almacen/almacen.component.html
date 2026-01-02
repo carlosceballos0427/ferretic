@@ -1,41 +1,27 @@
-<div style="padding:30px">
-  <p-table [value]="almacen" selectionMode="single" [(selection)]="almacen_seleccionado" (onRowSelect)="llenar_formulario_almacen()">
-    <ng-template pTemplate="caption">
+<div class="p-4">
+  <div class="glass-panel p-4 mb-4">
+    <h2 class="m-0"><i class="pi pi-box mr-2"></i>Control de Almacén (Stock Actual)</h2>
+    <p class="text-secondary m-0">Niveles de inventario en tiempo real sincronizados con ventas y compras</p>
+  </div>
 
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Id</th>
-        <th>Producto</th>
-        <th>Cantidad Venta</th>
-        <th>Cantidad Compra</th>
-
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-almacen>
-      <tr [pSelectableRow]="almacen">
-        <td >{{almacen.id}}</td>
-        <td >{{almacen.producto.nombre}}</td>
-        <td >{{almacen.venta.cantidad_venta}}</td>
-        <td >{{almacen.compra.cantidad_compra}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
-<p-dialog header="Almacen" [(visible)]="ver_form_almacen" [position]="'top'" [modal]="true">
-  <form [formGroup]="form_almacen">
-    <div class="login-page">
-      <div class="form">
-        <p-dropdown appendTo="body" [options]="productos" formControlName="producto_id" optionLabel="nombre" optionValue="id"></p-dropdown>
-        <br>
-        <p-dropdown appendTo="body" [options]="ventas" formControlName="venta_id" optionLabel="cantidad_venta" optionValue="id"></p-dropdown>
-        <br>
-        <p-dropdown appendTo="body" [options]="compras" formControlName="compra_id" optionLabel="cantidad_compra" optionValue="id"></p-dropdown>
-        <br>
+  <div class="grid">
+    <div class="col-12 md:col-6 lg:col-3" *ngFor="let prod of productos">
+      <div class="card glass-panel p-3 mb-3">
+        <div class="flex justify-content-between align-items-start mb-3">
+          <div>
+            <span class="text-secondary text-sm block">{{prod.marca}}</span>
+            <h3 class="m-0">{{prod.producto}}</h3>
+          </div>
+          <p-badge [value]="prod.stock"
+            [severity]="prod.stock > 10 ? 'success' : (prod.stock > 0 ? 'warning' : 'danger')" size="large"></p-badge>
+        </div>
+        <div class="flex justify-content-between align-items-center">
+          <span class="text-primary font-bold">${{prod.valor | number}}</span>
+          <span class="text-xs" [class.text-danger]="prod.stock <= 5" *ngIf="prod.stock <= 5">¡Stock Bajo!</span>
+        </div>
+        <p-progressBar [value]="(prod.stock / 100) * 100" [showValue]="false" class="mt-3" [style]="{'height': '6px'}"
+          [color]="prod.stock > 10 ? '#22c55e' : '#f59e0b'"></p-progressBar>
       </div>
     </div>
-  </form>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check"  label="Guardar" (click)="guardar()" styleClass="p-button-text"></p-button>
-  </ng-template>
-</p-dialog>
+  </div>
+</div>
