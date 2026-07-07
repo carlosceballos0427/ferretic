@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "ferretic-backend",
+      "runtimeExecutable": ".venv/bin/python",
+      "runtimeArgs": ["manage.py", "runserver"],
+      "port": 8000,
+      "autoPort": true
+    },
+    {
+      "name": "ferretic-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "frontend", "start"],
+      "port": 4200,
+      "autoPort": true
+    }
+  ]
+}

@@ -22,3 +22,7 @@ dist/
 # Misc
 identifier.sqlite
 .DS_Store
+
+# Notas locales de Claude Code (contexto privado, no versionar)
+CLAUDE.local.md
+.claude/settings.local.json
